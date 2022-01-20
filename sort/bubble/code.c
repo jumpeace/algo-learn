@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "../helpers/base.h"
-#include "../helpers/ary.h"
+#include "../../helpers/base.h"
+#include "../../helpers/ary.h"
 
 void bubbleSort(int ary[], int bottom, int top) {
     // 左側から1個, 2個, 3個...というようにソートしていく

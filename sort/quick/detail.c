@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "../helpers/base.h"
-#include "../helpers/ary.h"
+#include "../../helpers/base.h"
+#include "../../helpers/ary.h"
 
 // 要素番号を要素の値を基準にバブルソート
 void bubbleSortbyBase(int ary[], int bases[], int bottom, int top) {
