@@ -3,11 +3,10 @@
 ## 基礎（basic/）
 - 組み合わせの漸化式（combi/）
 
-<img src="https://latex.codecogs.com/svg.image?_{n}C_{r}"> を以下の漸化式で求める.
+<img src="https://user-images.githubusercontent.com/65803919/150450882-fd2ad717-cf44-41df-9797-151dd6585a2b.png"> を以下の漸化式で求める.
 
 <center>
-<img src="https://latex.codecogs.com/svg.image?\begin{cases}{{_{n}C_{r}} = \frac{n - r + 1}{r} {_{n}C_{r-1}}} \\{{_{n}C_{0}} = 1}\end{cases}">
-</center>
+<img src="https://user-images.githubusercontent.com/65803919/150450933-4349a3e8-700e-4011-b99e-c97b3d8d2d59.png">
 
 ## データ構造（data_structure/）
 - 双方向リスト（list/）
