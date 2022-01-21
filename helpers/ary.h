@@ -8,6 +8,8 @@
 
 int initAryByRandom(int[], int);
 
+int initAryBySorted(int[], int, int);
+
 void printAry(int[], int, int);
 
 #endif
