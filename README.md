@@ -30,7 +30,7 @@ gapの求め方は以下の漸化式で, <img src="https://user-images.githubuse
 
 <img src="https://user-images.githubusercontent.com/65803919/150663956-25fa1620-2c8f-4358-bec0-2ccd60569fd7.png" style="height: 72px; width: auto;">
 <br>
-例えば配列サイズが5のときは <img src="https://user-images.githubusercontent.com/65803919/150663645-36ae606e-bc53-49f1-b67d-e67e88610ab8.png" style="height: 12px; width: auto;"> が4になる.
+例えば配列サイズが5のときは<span><img src="https://user-images.githubusercontent.com/65803919/150663645-36ae606e-bc53-49f1-b67d-e67e88610ab8.png" style="height: 12px; width: auto;"></span>が4になる.
 
 
 ## 探索（search/）
