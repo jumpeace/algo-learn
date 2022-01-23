@@ -28,13 +28,10 @@ gapの間隔で配列の要素を抜き出してその配列をソートする.
 
 gapの求め方は以下の漸化式で, <img src="https://user-images.githubusercontent.com/65803919/150663645-36ae606e-bc53-49f1-b67d-e67e88610ab8.png" style="height: 12px; width: auto;"> が配列サイズを超えないように調整する.
 
-<img src="https://user-images.githubusercontent.com/65803919/150663643-d775568f-705e-4ea5-860e-3eb1e8defa9a.png" style="height: 16px; width: auto;">
+<img src="https://user-images.githubusercontent.com/65803919/150663956-25fa1620-2c8f-4358-bec0-2ccd60569fd7.png" style="height: 72px; width: auto;">
 <br>
-<img src="https://user-images.githubusercontent.com/65803919/150663644-6bddfc00-c059-4e7b-b4a4-445105c302ff.png" style="height: 17px; width: auto;">
-<br>
-<br>
-
 例えば配列サイズが5のときは <img src="https://user-images.githubusercontent.com/65803919/150663645-36ae606e-bc53-49f1-b67d-e67e88610ab8.png" style="height: 12px; width: auto;"> が4になる.
+
 
 ## 探索（search/）
 ### 二分探索（binary/）
