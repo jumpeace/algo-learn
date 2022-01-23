@@ -4,7 +4,7 @@
 #include "../../helpers/base.h"
 #include "../../helpers/ary.h"
 
-void shellSort(int *ary, int bottom, int top)
+void insertSort(int *ary, int bottom, int top)
 {
     // 前の方の値から交換を行う
     for (int i = bottom + 1; i <= top; i++)
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     printAry(ary, 0, N - 1);
     printf("\n");
 
-    shellSort(ary, 0, N - 1);
+    insertSort(ary, 0, N - 1);
 
     printf("\nソート後　");
     printAry(ary, 0, N - 1);
