@@ -6,7 +6,7 @@
 
 #define __ARY_H__
 
-int initAryByRandom(int[], int);
+int initAryByRandom(int[], int, int, int, int);
 
 int initAryBySorted(int[], int, int);
 

@@ -5,10 +5,10 @@
 #include <time.h>
 
 
-int initAryByRandom(int ary[], int ary_size) {
-    for (int i = 0; i < ary_size; i++) {
-        ary[i] = random() % 100;
-    }
+int initAryByRandom(int ary[], int bottom, int top, int rand_min, int rand_max) {
+    int rand_gap = rand_max - rand_min + 1;
+    for (int i = bottom; i <= top; i++) 
+        ary[i] = random() % rand_gap + rand_min;
 }
 
 int initAryBySorted(int ary[], int ary_size, int max_interval) {

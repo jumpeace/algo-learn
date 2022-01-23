@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 {
     srandom(time(NULL));
     int a[n + 1];
-    initAryByRandom(a, n + 1);
+    initAryByRandom(a, 0, n, 0, 9);
 
     printf("a=");
     printAry(a, 0, n);

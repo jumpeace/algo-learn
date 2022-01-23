@@ -159,7 +159,7 @@ int main(int argc, char const *argv[])
     srandom(time(NULL));
 
     int ary[N];
-    initAryByRandom(ary, N);
+    initAryByRandom(ary, 0, N - 1, 0, 99);
     
     printf("ソート前　");
     printAry(ary, 0, N - 1);
