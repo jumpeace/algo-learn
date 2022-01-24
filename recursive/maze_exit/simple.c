@@ -30,8 +30,10 @@ int record_p;
 // 1経路の迷路の探索
 bool visit(int x, int y, Xy end)
 {
+    // 同じ道をもう一度探索しないようにする
     map[y][x] = VSD;
 
+    // とりあえず出口への経路として記録しておく
     record[record_p].x = x;
     record[record_p].y = y;
     record_p++;
@@ -41,6 +43,7 @@ bool visit(int x, int y, Xy end)
 
     bool is_success = false;
 
+    // あるマスから四方の道に行ければたどってみる（訪問済のマスは行けない）
     if (!is_success && map[y][x + 1] == FLR) 
         is_success = visit(x + 1, y, end);
     if (!is_success && map[y + 1][x] == FLR) 
@@ -50,6 +53,7 @@ bool visit(int x, int y, Xy end)
     if (!is_success && map[y - 1][x] == FLR) 
         is_success = visit(x, y - 1, end);
     
+    // どの方向に行っても出口が見つからない場合はルートが間違っている
     if (!is_success) 
         record_p--;
     return is_success;
