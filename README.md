@@ -16,8 +16,8 @@
 <img src="https://user-images.githubusercontent.com/65803919/150663589-faeecf1a-ffc0-4f38-a1e3-61c2077b537a.png" style="height: 20px; width: auto;">
 
 ### 階乗（factorial）
-
 ### フィボナッチ数（fibonacci）
+### 迷路の出口探索（maze_exit）
 
 ## データ構造（data_structure/）
 ### 双方向リスト（list/）
