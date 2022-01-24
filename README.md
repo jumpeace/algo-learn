@@ -1,6 +1,6 @@
 # 実装アルゴリズム一覧
 
-## 基礎（basic/）
+## 再帰（recursive/）
 ### 組み合わせの漸化式（combi/）
 
 <img src="https://user-images.githubusercontent.com/65803919/150450882-fd2ad717-cf44-41df-9797-151dd6585a2b.png"> を以下の漸化式で求める.
@@ -14,6 +14,10 @@
 以上の式は以下の式で記述できる
 
 <img src="https://user-images.githubusercontent.com/65803919/150663589-faeecf1a-ffc0-4f38-a1e3-61c2077b537a.png" style="height: 20px; width: auto;">
+
+### 階乗（factorial）
+
+### フィボナッチ数（fibonacci）
 
 ## データ構造（data_structure/）
 ### 双方向リスト（list/）
