@@ -8,10 +8,6 @@ typedef struct TreeNode {
     struct TreeNode* right;
 } TreeNode;
 
-typedef struct {
-    TreeNode* root_node;
-} Tree;
-
 TreeNode* treeNode_init(int data) {
     TreeNode *node;
 
@@ -21,14 +17,6 @@ TreeNode* treeNode_init(int data) {
     node->right = NULL;
 
     return node;
-}
-Tree* tree_init() {
-    Tree *tree;
-
-    tree = (Tree *)malloc(sizeof(Tree));
-    tree->root_node = NULL;
-
-    return tree;
 }
 
 void treeNode_print(TreeNode* node) {
@@ -40,10 +28,6 @@ void treeNode_print(TreeNode* node) {
     printf("}{");
     treeNode_print(node->right);
     printf("}]");
-}
-void tree_print(Tree* tree) {
-    treeNode_print(tree->root_node);
-    printf("\n");
 }
 
 bool treeNode_isGoLeft(TreeNode* node, int data) {
@@ -64,32 +48,28 @@ TreeNode* treeNode_add(TreeNode* node, int data) {
         node->right = treeNode_add(node->right, data);
     return node;
 }
-void tree_add(Tree* tree, int data) {
-    tree->root_node =  treeNode_add(tree->root_node, data);
-}
 
 void treeNode_all_delete(TreeNode* node) {
     if (node == NULL) 
         return;
 
-    treeNode_delete(node->left);
-    treeNode_delete(node->right);
+    treeNode_all_delete(node->left);
+    treeNode_all_delete(node->right);
     
     free(node);
-}
-void tree_all_delete(Tree* tree) {
-    treeNode_all_delete(tree->root_node);
 }
 
 int main(int argc, char *argv[])
 {
-    Tree* tree = tree_init();
-    tree_add(tree, 3);
-    tree_add(tree, 4);
-    tree_add(tree, 3);
-    // tree_add(tree, 1);
-    tree_print(tree);
-    tree_all_delete(tree);
-    free(tree);
+    TreeNode* root = NULL;
+
+    root = treeNode_add(root, 4);
+    root = treeNode_add(root, 3);
+    root = treeNode_add(root, 5);
+    root = treeNode_add(root, 6);
+
+    treeNode_print(root);
+    printf("\n");
+    treeNode_all_delete(root);
     return 0;
 }
