@@ -14,7 +14,7 @@ typedef struct TreeNode {
     struct TreeNode* right;
 } TreeNode;
 
-TreeNode* treeNode_init(int data) {
+TreeNode* init(int data) {
     // 自然数のみ
     if (data <= 0)
         return NULL;
@@ -29,38 +29,39 @@ TreeNode* treeNode_init(int data) {
     return node;
 }
 
-void treeNode_print(TreeNode* node) {
+void print(TreeNode* node) {
     if (node == NULL)
         return;
 
     printf("%d->[{", node->data);
-    treeNode_print(node->left);
+    print(node->left);
     printf("}{");
-    treeNode_print(node->right);
+    print(node->right);
     printf("}]");
 }
 
 /* 
     ☆引数のnodeはポインタなので値渡し（☓参照渡し）
     そのため返り値を返さないと実体ができない
+    （参考：http://www.nct9.ne.jp/m_hiroi/linux/clang13.html）
 */
-TreeNode* treeNode_add(TreeNode* node, int data) {
+TreeNode* add(TreeNode* node, int data) {
     if (node == NULL) 
-        return treeNode_init(data);
+        return init(data);
 
     if (data < node->data) 
-        node->left = treeNode_add(node->left, data);
+        node->left = add(node->left, data);
     else 
-        node->right = treeNode_add(node->right, data);
+        node->right = add(node->right, data);
     return node;
 }
 
-void treeNode_all_delete(TreeNode* node) {
+void all_delete(TreeNode* node) {
     if (node == NULL) 
         return;
 
-    treeNode_all_delete(node->left);
-    treeNode_all_delete(node->right);
+    all_delete(node->left);
+    all_delete(node->right);
     
     free(node);
 }
@@ -78,18 +79,22 @@ int search_max(TreeNode* node) {
     return (node->right == NULL) ? node->data : search_max(node->right);
 }
 
+// int traversal(TreeNode* node) {
+
+// }
+
 int main(int argc, char *argv[])
 {
     TreeNode* root = NULL;
 
-    root = treeNode_add(root, 4);
-    root = treeNode_add(root, 3);
-    root = treeNode_add(root, 5);
-    root = treeNode_add(root, 6);
+    root = add(root, 4);
+    root = add(root, 3);
+    root = add(root, 5);
+    root = add(root, 6);
 
-    treeNode_print(root);
+    print(root);
     printf("\n");
     printf("min: %d, max: %d\n", search_min(root), search_max(root));
-    treeNode_all_delete(root);
+    all_delete(root);
     return 0;
 }
