@@ -19,7 +19,7 @@
 ### フィボナッチ数（fibonacci）
 ### 迷路の出口探索（maze_exit）
 
-## データ構造（data_structure/）
+## データ構造（data/）
 ### 双方向リスト（list/）
 ### 二分探索木（binary_tree/）
 ### ハッシュ値を求める（hash/）
