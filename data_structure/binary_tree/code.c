@@ -1,3 +1,9 @@
+/*
+    二分探索木
+    ・自然数のみ
+    ・あるノードに注目した時, 左側の子ノードの値 < 注目したノードの値 <= 右側子ノードの値
+*/
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -9,6 +15,10 @@ typedef struct TreeNode {
 } TreeNode;
 
 TreeNode* treeNode_init(int data) {
+    // 自然数のみ
+    if (data <= 0)
+        return NULL;
+
     TreeNode *node;
 
     node = (TreeNode *)malloc(sizeof(TreeNode));
@@ -30,10 +40,6 @@ void treeNode_print(TreeNode* node) {
     printf("}]");
 }
 
-bool treeNode_isGoLeft(TreeNode* node, int data) {
-    return (data < node->data) ? true : false;
-}
-
 /* 
     ☆引数のnodeはポインタなので値渡し（☓参照渡し）
     そのため返り値を返さないと実体ができない
@@ -42,7 +48,7 @@ TreeNode* treeNode_add(TreeNode* node, int data) {
     if (node == NULL) 
         return treeNode_init(data);
 
-    if (treeNode_isGoLeft(node, data)) 
+    if (data < node->data) 
         node->left = treeNode_add(node->left, data);
     else 
         node->right = treeNode_add(node->right, data);
@@ -59,6 +65,19 @@ void treeNode_all_delete(TreeNode* node) {
     free(node);
 }
 
+// ノードがあったら最小値(自然数), ノードがなかったらfalse(=0)
+int search_min(TreeNode* node) {
+    if (node == NULL)
+        return false;
+    return (node->left == NULL) ? node->data : search_min(node->left);
+}
+// ノードがあったら最大値(自然数), ノードがなかったらfalse(=0)
+int search_max(TreeNode* node) {
+    if (node == NULL)
+        return false;
+    return (node->right == NULL) ? node->data : search_max(node->right);
+}
+
 int main(int argc, char *argv[])
 {
     TreeNode* root = NULL;
@@ -70,6 +89,7 @@ int main(int argc, char *argv[])
 
     treeNode_print(root);
     printf("\n");
+    printf("min: %d, max: %d\n", search_min(root), search_max(root));
     treeNode_all_delete(root);
     return 0;
 }
