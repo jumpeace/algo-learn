@@ -79,9 +79,34 @@ int search_max(TreeNode* node) {
     return (node->right == NULL) ? node->data : search_max(node->right);
 }
 
-// int traversal(TreeNode* node) {
+void walkByRecursive(TreeNode* node) {
+    if (node == NULL)
+        return;
+    
+    walkByRecursive(node->left);
+    printf("%d ", node->data);
+    walkByRecursive(node->right);
+}
 
-// }
+// 最大深さ128はてきとう
+#define MAX_DEPTH 128
+void walkByStack(TreeNode* node) {
+    TreeNode *this_node, *stack[MAX_DEPTH];
+    int depth = 0;
+
+    this_node = node;
+    while(!(depth == 0 && this_node == NULL)) {
+        while(this_node != NULL || depth >= MAX_DEPTH) {
+            stack[depth++] = this_node;
+            this_node = this_node->left;
+        }
+        depth--;
+        printf("%d ", stack[depth]->data);
+        this_node = stack[depth] -> right;
+    }
+}
+
+// TODO 次は深さごとのトラバーサル
 
 int main(int argc, char *argv[])
 {
@@ -94,7 +119,18 @@ int main(int argc, char *argv[])
 
     print(root);
     printf("\n");
+
     printf("min: %d, max: %d\n", search_min(root), search_max(root));
+
+    printf("walkByRecursive: ");
+    walkByRecursive(root);
+    printf("\n");
+
+    printf("walkByStack: ");
+    walkByStack(root);
+    printf("\n");
+
     all_delete(root);
+
     return 0;
 }
