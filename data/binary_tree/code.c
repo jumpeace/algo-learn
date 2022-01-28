@@ -96,6 +96,8 @@ void walkByStack(TreeNode* node) {
 
     this_node = node;
     while(!(depth == 0 && this_node == NULL)) {
+        // while(this_node != NULL) {
+        // スタックが配列のため
         while(this_node != NULL || depth >= MAX_DEPTH) {
             stack[depth++] = this_node;
             this_node = this_node->left;
@@ -106,7 +108,45 @@ void walkByStack(TreeNode* node) {
     }
 }
 
-// TODO 次は深さごとのトラバーサル
+#define MAX_NODE_NUM 128
+void walkByDepth(TreeNode* node) {
+    TreeNode *parents[MAX_NODE_NUM], *children[MAX_NODE_NUM];
+
+    int parent_count = 0;
+    parents[parent_count++] = node;
+    for(int depth = 0;; depth++) {
+        printf("depth %d\n", depth);
+
+        int child_count = 0;
+        for (int i = 0; i < parent_count; i++) {
+            printf("　%d->[", parents[i]->data);
+            if (parents[i]->left != NULL) {
+                // スタックが配列のため
+                if (child_count >= MAX_NODE_NUM - 1) 
+                    break;
+                printf("%d", parents[i]->left->data);
+                children[child_count++] = parents[i]->left;
+            }
+            printf("][");
+            if (parents[i]->right != NULL) 
+            {
+                // スタックが配列のため
+                if (child_count >= MAX_NODE_NUM - 1) 
+                    break;
+                printf("%d", parents[i]->right->data);
+                children[child_count++] = parents[i]->right;
+            }
+            printf("]\n");
+        }
+
+        if (child_count == 0) 
+            break;
+
+        for (int i = 0; i < child_count; i++)
+            parents[i] = children[i];
+        parent_count = child_count;
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -129,6 +169,10 @@ int main(int argc, char *argv[])
     printf("walkByStack: ");
     walkByStack(root);
     printf("\n");
+
+    printf("--- walkByDepth ---\n");
+    walkByDepth(root);
+    printf("-----\n");
 
     all_delete(root);
 
