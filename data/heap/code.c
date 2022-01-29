@@ -16,6 +16,7 @@ Heap* init() {
     return heap;
 }
 
+// 上方移動
 void addByRise(Heap *heap, int data) {
     heap->data[heap->num] = data;
 
@@ -30,7 +31,39 @@ void addByRise(Heap *heap, int data) {
     heap->num++;
 }
 
+void addHeap(Heap* heap, int data) {
+    heap->data[heap->num++] = data;
+}
+
+// 下方移動
+void moveDown(Heap *heap) {
+    int parent_i, child_i;
+    int max_i = (heap->num - 1);
+
+    // 下側からすべての親に関して実行
+    for (int i = max_i / 2; i >= 1; i--) {
+        parent_i = i;
+        child_i = parent_i * 2;
+
+        while(child_i <= max_i) {
+            // ある親の子の中で最小の子を選ぶ
+            if (child_i <= max_i - 1 && heap->data[child_i + 1] < heap->data[child_i])
+                child_i++;
+            // 親 <= 最小の子ならOK
+            if (heap->data[parent_i] <= heap->data[child_i])
+                break;
+            // 親 > 最小の子ならば交換する
+            swap(&heap->data[parent_i], &heap->data[child_i]);
+
+            // 親と交換した子とその子に関してもう一度調べる
+            parent_i = child_i;
+            child_i = parent_i * 2;
+        }
+    }
+}
+
 int main(void) {
+    // 上方移動
     Heap* heap = init();
     addByRise(heap, 1);
     addByRise(heap, 5);
@@ -41,6 +74,24 @@ int main(void) {
     printf("heap=");
     printAry(heap->data, 0, heap->num - 1);
     printf("\n");
+
+    free(heap);
+
+
+    heap = init();
+    addHeap(heap, 1);
+    addHeap(heap, 5);
+    addHeap(heap, 3);
+    addHeap(heap, 9);
+    addHeap(heap, 2);
+    moveDown(heap);
+
+    printf("heap=");
+    printAry(heap->data, 0, heap->num - 1);
+    printf("\n");
+
+    free(heap);
+
 
     return 0;
 }
