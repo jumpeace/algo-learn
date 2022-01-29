@@ -47,10 +47,6 @@ void moveDown(Heap *heap, int top) {
             parent_i = child_i;
             child_i = parent_i * 2;
         }
-
-        printf("movedown=");
-        printAry(heap->data, 0, top);
-        printf("\n");
     }
 }
 
