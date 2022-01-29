@@ -12,4 +12,6 @@ int initAryBySorted(int[], int, int);
 
 void printAry(int[], int, int);
 
+void reverseAry(int[], int, int);
+
 #endif

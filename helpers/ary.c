@@ -1,4 +1,6 @@
 #include "ary.h"
+#include "ary.h"
+#include "base.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,4 +30,9 @@ void printAry(int ary[], int bottom, int top) {
             printf(", %d", ary[i]);
     }
     printf("]");
+}
+
+void reverseAry(int ary[], int bottom, int top) {
+    for (int i = bottom; i < bottom + ((top + 1) - bottom) / 2; i++) 
+        swap(&ary[i], &ary[top - i]);
 }
