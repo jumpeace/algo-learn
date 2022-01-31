@@ -41,6 +41,8 @@ gapの求め方は以下の漸化式で, <img src="https://user-images.githubuse
 例えば配列サイズが5のときは<span><img src="https://user-images.githubusercontent.com/65803919/150663645-36ae606e-bc53-49f1-b67d-e67e88610ab8.png" style="height: 12px; width: auto;"></span>が4になる.
 
 ### ヒープソート（heap/）
+### マージソート（merge/）
 
 ## 探索（search/）
 ### 二分探索（binary/）
+### Boyer-Moore法による文字列検索（bm/）
