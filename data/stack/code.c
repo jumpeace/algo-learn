@@ -2,117 +2,90 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-typedef struct tagNode
-{
-    struct tagNode *prev; // 前の要素へのポインタ
-    struct tagNode *next; // 後の要素へのポインタ
-    int data;
-} Node;
+#include "../../helpers/ary.h"
 
 typedef struct
 {
-    Node *first_node;
-    Node *last_node;
+    int size;
+    int *data;
+    int count;
 } Stack;
 
-// 引数にStack*型を取るとうまく行かない(ポインタは参照渡しができないから)
-Stack *stack_init()
+Stack *init(int size)
 {
-    Stack *stack;
+    if (size < 1)
+        return NULL;
 
-    stack = (Stack *)malloc(sizeof(Stack));
-
-    stack->first_node = NULL;
-    stack->last_node = NULL;
-
+    Stack *stack = (Stack *)malloc(sizeof(Stack));
+    stack->size = size;
+    stack->data = (int *)malloc(sizeof(int) * size);
+    for (int i = 0; i < size; i++)
+        stack->data[i] = 0;
+    stack->count = 0;
     return stack;
 }
 
-void stack_add(Stack *stack, int data)
+bool stack_add(Stack *stack, int val)
 {
-    Node *new_node = (Node *)malloc(sizeof(Node));
-
-    new_node->data = data;
-    new_node->next = NULL;
-
-    if (stack->last_node == NULL)
-    {
-        new_node->prev = NULL;
-        stack->first_node = new_node;
-        stack->last_node = new_node;
-    }
-    else
-    {
-        new_node->prev = stack->last_node;
-        stack->last_node->next = new_node;
-        stack->last_node = new_node;
-    }
-}
-
-bool stack_remove(Stack *stack)
-{
-    Node *remove_node = stack->last_node;
-    if (remove_node == NULL)
+    if (stack->count >= stack->size - 1)
+        return false;
+    if (val <= 0)
         return false;
 
-    Node *next_last_node = remove_node->prev;
-    if (next_last_node == NULL)
-    {
-        stack->first_node = NULL;
-        stack->last_node = NULL;
-    }
-    else
-    {
-        next_last_node->next = NULL;
-        stack->last_node = next_last_node;
-    }
-
-    free(remove_node);
-
+    stack->data[stack->count++] = val;
     return true;
 }
 
-void stack_print(Stack *stack)
+int stack_remove(Stack *stack)
 {
-    printf("[");
-    for (Node *this_node = stack->first_node; this_node != NULL; this_node = this_node->next)
-    {
-        if (this_node == stack->first_node)
-            printf("%d", this_node->data);
-        else
-            printf(", %d", this_node->data);
-    }
-    printf("]");
+    if (stack->count <= 0)
+        return false;
+    
+    stack->count--;
+    int result = stack->data[stack->count];
+    stack->data[stack->count] = 0;
+
+    return result;
 }
 
-Stack *stack_initByAry(int ary[], int ary_size)
+int stack_print(Stack *stack)
 {
-    Stack *stack = stack_init();
-
-    for (int i = 0; i < ary_size; i++)
-        stack_add(stack, ary[i]);
-
-    return stack;
+    printAry(stack->data, 0, stack->count - 1);
 }
 
-Stack *stack_removeAll(Stack *stack)
+int stack_free(Stack *stack)
 {
-    while (stack_remove(stack))
-        ;
+    free(stack->data);
+    free(stack);
 }
 
 int main(int argc, char *argv[])
 {
-    int ary[3] = {1, 2, 2};
-    Stack *stack = stack_initByAry(ary, 3);
-    printf("stack=");
+    Stack *stack = init(10);
+
+    printf("stack:");
     stack_print(stack);
     printf("\n");
 
-    stack_removeAll(stack);
-    printf("stack=");
+    stack_add(stack, 1);
+    stack_add(stack, 2);
+    stack_add(stack, 3);
+
+    printf("stack:");
     stack_print(stack);
     printf("\n");
-    
+
+    while (true)
+    {
+        int result = stack_remove(stack);
+        printf("remove: %d <- ", result);
+        stack_print(stack);
+        printf("\n");
+        if (!result)
+            break;
+    }
+
+    stack_free(stack);
+
     return 0;
 }
