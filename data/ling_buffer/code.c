@@ -29,7 +29,6 @@ Ling *init(int size)
 
 bool ling_add(Ling *ling, int val)
 {
-    // printAry(ling->data, 0, ling->size - 1);
     if (ling->in_p == ling->out_p && ling->data[ling->in_p] != 0)
         return false;
     if (val <= 0)
