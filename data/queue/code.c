@@ -2,123 +2,94 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-typedef struct tabNode
-{
-    struct tabNode *prev; // 前の要素へのポインタ
-    struct tabNode *next; // 後の要素へのポインタ
-    int data;
-} Node;
+#include "../../helpers/ary.h"
 
 typedef struct
 {
-    Node *first_node;
-    Node *last_node;
+    int size;
+    int *data;
+    int count;
 } Queue;
 
-// 引数にQueue*型を取るとうまく行かない(ポインタは参照渡しができないから)
-Queue *queue_init()
+Queue *init(int size)
 {
-    Queue *queue;
+    if (size < 1)
+        return NULL;
 
-    queue = (Queue *)malloc(sizeof(Queue));
-
-    queue->first_node = NULL;
-    queue->last_node = NULL;
-
+    Queue *queue = (Queue *)malloc(sizeof(Queue));
+    queue->size = size;
+    queue->data = (int *)malloc(sizeof(int) * size);
+    for (int i = 0; i < size; i++)
+        queue->data[i] = 0;
+    queue->count = 0;
     return queue;
 }
 
-void queue_add(Queue *queue, int data)
+bool queue_add(Queue *queue, int val)
 {
-    Node *new_node = (Node *)malloc(sizeof(Node));
-
-    new_node->data = data;
-    new_node->prev = NULL;
-    
-    if (queue->first_node == NULL)
-    {
-        new_node->next = NULL;
-        queue->first_node = new_node;
-        queue->last_node = new_node;
-    }
-    else
-    {
-        new_node->next = queue->first_node;
-        queue->first_node->prev = new_node;
-        queue->first_node = new_node;
-    }
-}
-
-bool queue_remove(Queue *queue)
-{
-    Node *remove_node = queue->last_node;
-    if (remove_node == NULL)
+    if (queue->count >= queue->size - 1)
+        return false;
+    if (val <= 0)
         return false;
 
-    Node *next_last_node = remove_node->prev;
-    if (next_last_node == NULL)
-    {
-        queue->first_node = NULL;
-        queue->last_node = NULL;
+    for (int i = queue->count - 1; i >= 0; i--) {
+        queue->data[i + 1] = queue->data[i];
     }
-    else
-    {
-        next_last_node->next = NULL;
-        queue->last_node = next_last_node;
-    }
-
-    free(remove_node);
-
+    queue->data[0] = val;
+    queue->count++;
     return true;
 }
 
-void queue_print(Queue *queue)
+int queue_remove(Queue *queue)
 {
-    printf("[");
-    for (Node *this_node = queue->first_node; this_node != NULL; this_node = this_node->next)
-    {
-        if (this_node == queue->first_node)
-            printf("%d", this_node->data);
-        else
-            printf(", %d", this_node->data);
-    }
-    printf("]");
+    if (queue->count <= 0)
+        return false;
+    
+    queue->count--;
+    int result = queue->data[queue->count];
+    queue->data[queue->count] = 0;
+
+    return result;
 }
 
-Queue *queue_initByAry(int ary[], int ary_size)
+int queue_print(Queue *queue)
 {
-    Queue *queue = queue_init();
-
-    for (int i = 0; i < ary_size; i++)
-        queue_add(queue, ary[i]);
-
-    return queue;
+    printAry(queue->data, 0, queue->count - 1);
 }
 
-Queue *queue_removeAll(Queue *queue)
+int queue_free(Queue *queue)
 {
-    while (queue_remove(queue))
-        ;
+    free(queue->data);
+    free(queue);
 }
 
 int main(int argc, char *argv[])
 {
-    int ary[3] = {1, 2, 2};
-    Queue *queue = queue_initByAry(ary, 3);
-    printf("queue=");
+    Queue *queue = init(10);
+
+    printf("queue:");
     queue_print(queue);
     printf("\n");
 
-    queue_remove(queue);
+    queue_add(queue, 1);
+    queue_add(queue, 2);
+    queue_add(queue, 3);
 
-    printf("queue=");
+    printf("queue:");
     queue_print(queue);
     printf("\n");
 
-    queue_removeAll(queue);
-    printf("queue=");
-    queue_print(queue);
-    printf("\n");
-    
+    while (true)
+    {
+        int result = queue_remove(queue);
+        printf("remove: %d <- ", result);
+        queue_print(queue);
+        printf("\n");
+        if (!result)
+            break;
+    }
+
+    queue_free(queue);
+
     return 0;
 }
