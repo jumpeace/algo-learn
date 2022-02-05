@@ -24,8 +24,6 @@
 ### スタック（stack/）
 ### キュー（queue/）
 ### リングバッファー（ling_buffer/）
-### 二分探索木（binary_tree/）
-### ヒープ（heap/）
 ### ハッシュ値を求める（hash/）
 ※my_hash.cは自己流のハッシュ値です. ハッシュ値の元, 文字列の長さによって偏りが出ないようにしました.
 
@@ -43,9 +41,13 @@ gapの求め方は以下の漸化式で, <img src="https://user-images.githubuse
 <br>
 例えば配列サイズが5のときは<span><img src="https://user-images.githubusercontent.com/65803919/150663645-36ae606e-bc53-49f1-b67d-e67e88610ab8.png" style="height: 12px; width: auto;"></span>が4になる.
 
-### ヒープソート（heap/）
 ### マージソート（merge/）
 
 ## 探索（search/）
 ### 二分探索（binary/）
 ### Boyer-Moore法による文字列検索（bm/）
+
+## 木構造（tree/）
+### 二分探索木（binary_tree/）
+### ヒープ（heap/）
+### ヒープソート（heap_sort/）
