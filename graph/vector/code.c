@@ -23,7 +23,7 @@ void setup()
 
     nodes[3][0] = true;
 
-    for (int i = 0; i < SIZE; i++) 
+    for (int i = 0; i < SIZE; i++)
         visited[i] = false;
 }
 
@@ -32,7 +32,8 @@ void visit(int visit_i)
     if (visited[visit_i] == true)
         return;
     visited[visit_i] = true;
-    for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++)
+    {
         if (i == visit_i || !nodes[visit_i][i])
             continue;
         printf("%d->%d ", visit_i, i);
@@ -40,15 +41,29 @@ void visit(int visit_i)
     }
 }
 
-void visit_all() {
-    for (int i = 0; i < SIZE; i++) 
+void visit_all()
+{
+    for (int i = 0; i < SIZE; i++)
         visit(i);
+}
+
+void visit_from_all()
+{
+    puts("[visit_from_all]");
+    for (int i = 0; i < SIZE; i++)
+    {
+        printf("%d: ", i);
+        visit(i);
+        printf("\n");
+        for (int j = 0; j < SIZE; j++)
+            visited[j] = false;
+    }
 }
 
 int main(int argc, char *argv[])
 {
     setup();
     visit_all();
-    printf("\n");
+    visit_from_all();
     return 0;
 }
