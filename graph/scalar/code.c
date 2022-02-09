@@ -15,7 +15,7 @@ void setup()
             nodes[j][i] = false;
 
     nodes[0][1] = true;
-    nodes[0][1] = true;
+    nodes[1][0] = true;
 
     nodes[1][2] = true;
     nodes[2][1] = true;
