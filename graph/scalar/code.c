@@ -20,11 +20,8 @@ void setup()
     nodes[1][2] = true;
     nodes[2][1] = true;
 
-    nodes[2][3] = true;
-    nodes[3][2] = true;
-
-    nodes[1][4] = true;
-    nodes[4][1] = true;
+    nodes[3][4] = true;
+    nodes[4][3] = true;
 
     for (int i = 0; i < SIZE; i++) 
         visited[i] = false;
@@ -42,10 +39,15 @@ void visit(int visit_i)
         visit(i);
     }
 }
+void visit_all() {
+    for (int i = 0; i < SIZE; i++) 
+        visit(i);
+}
+
 int main(int argc, char *argv[])
 {
     setup();
-    visit(0);
+    visit_all();
     printf("\n");
     return 0;
 }
