@@ -26,18 +26,17 @@ void setup()
     for (int i = 0; i < SIZE; i++)
         visited[i] = false;
 }
-
 void visit(int visit_i)
 {
-    if (visited[visit_i]) 
+    if (visited[visit_i])
         return;
     visited[visit_i] = true;
     for (int i = 0; i < SIZE; i++)
     {
-        if (i == visit_i || !nodes[visit_i][i])
+        if ((i == visit_i || visited[i]) || !nodes[visit_i][i])
             continue;
-        visit(i);
         printf("%d->%d ", visit_i, i);
+        visit(i);
     }
 }
 void visit_all()
