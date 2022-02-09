@@ -43,6 +43,10 @@ void visit(int visit_i)
 
 void visit_all()
 {
+    for (int j = 0; j < SIZE; j++)
+        visited[j] = false;
+
+    puts("[visit_all]");
     for (int i = 0; i < SIZE; i++)
         visit(i);
     printf("\n");
@@ -53,11 +57,12 @@ void visit_from_all()
     puts("[visit_from_all]");
     for (int i = 0; i < SIZE; i++)
     {
+        for (int j = 0; j < SIZE; j++)
+            visited[j] = false;
+
         printf("%d: ", i);
         visit(i);
         printf("\n");
-        for (int j = 0; j < SIZE; j++)
-            visited[j] = false;
     }
 }
 
