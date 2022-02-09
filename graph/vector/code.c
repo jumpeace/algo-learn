@@ -45,6 +45,7 @@ void visit_all()
 {
     for (int i = 0; i < SIZE; i++)
         visit(i);
+    printf("\n");
 }
 
 void visit_from_all()

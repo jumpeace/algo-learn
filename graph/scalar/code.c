@@ -42,8 +42,10 @@ void visit(int visit_i)
 }
 void visit_all()
 {
+    puts("[visit_all]");
     for (int i = 0; i < SIZE; i++)
         visit(i);
+    printf("\n");
 }
 
 void visit_from_all()
