@@ -85,6 +85,7 @@ void print_con_nodess() {
     puts("[print_con_nodess]");
     for (int i = 0; i < SIZE; i++)
     {
+        // 非連結グラフのいずれかのグループにあるかを判定
         bool is_in_con_nodes = false;
         for (int j = 0; j < con_nodess.count; j++) {
             Nodes jnodes = con_nodess.data[j];
@@ -100,9 +101,9 @@ void print_con_nodess() {
         if (is_in_con_nodes)
             continue;
 
+        // 非連結グラフのグループを作成
         for (int j = 0; j < SIZE; j++)
             visited[j] = false;
-
         visit(i, false);
 
         con_nodess.data[con_nodess.count].count = 0;
