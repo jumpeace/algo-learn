@@ -4,4 +4,4 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-gcc -o $1.exe $1.c ../../../helpers/base.c ../../../helpers/ary.c
+gcc -o $1.exe $1.c ../../helpers/base.c ../../helpers/ary.c
