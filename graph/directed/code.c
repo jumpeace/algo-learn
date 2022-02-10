@@ -8,6 +8,17 @@
 #define SIZE 5
 int nodes[SIZE][SIZE];
 int visited[SIZE];
+typedef struct
+{
+    int data[SIZE];
+    int count;
+} Nodes;
+typedef struct
+{
+    Nodes data[SIZE];
+    int count;
+} Nodess;
+
 void setup()
 {
     for (int i = 0; i < SIZE; i++)
@@ -27,7 +38,7 @@ void setup()
         visited[i] = false;
 }
 
-void visit(int visit_i)
+void visit(int visit_i, bool is_print)
 {
     if (visited[visit_i] == true)
         return;
@@ -36,8 +47,9 @@ void visit(int visit_i)
     {
         if (i == visit_i || !nodes[visit_i][i])
             continue;
-        printf("%d->%d ", visit_i, i);
-        visit(i);
+        if (is_print)
+            printf("%d->%d ", visit_i, i);
+        visit(i, true);
     }
 }
 
@@ -48,7 +60,7 @@ void visit_all()
 
     puts("[visit_all]");
     for (int i = 0; i < SIZE; i++)
-        visit(i);
+        visit(i, true);
     printf("\n");
 }
 
@@ -61,7 +73,7 @@ void visit_from_all()
             visited[j] = false;
 
         printf("%d: ", i);
-        visit(i);
+        visit(i, true);
         printf("\n");
     }
 }
