@@ -54,4 +54,4 @@ gapの求め方は以下の漸化式で, <img src="https://user-images.githubuse
 
 ## グラフ（graph/）
 ## 無向グラフ（undirected/）
-## 有向グラフ（vector/）
+## 有向グラフ（directed/）
