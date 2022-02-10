@@ -66,5 +66,7 @@ gapの求め方は以下の漸化式で, <img src="https://user-images.githubuse
 
 ## グラフ（graph/）
 ### 深さ優先探索（depth_search/）
-#### 無向グラフ（undirected/）
-#### 有向グラフ（directed/）
+#### 無向グラフの場合（undirected/）
+#### 有向グラフの場合（directed/）
+### 幅優先探索（width_search/）
+#### 無向グラフの場合（undirected/）
