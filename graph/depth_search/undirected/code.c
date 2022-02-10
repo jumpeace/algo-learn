@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../helpers/ary.h"
+#include "../../../helpers/ary.h"
 
 #define SIZE 5
 int nodes[SIZE][SIZE];
