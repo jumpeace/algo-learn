@@ -1,5 +1,7 @@
 # 実装アルゴリズム一覧
 
+---
+
 ## 再帰（recursive/）
 ### 組み合わせの漸化式（combi/）
 
@@ -19,6 +21,8 @@
 ### フィボナッチ数（fibonacci）
 ### 迷路の出口探索（maze_exit）
 
+---
+
 ## データ構造（data/）
 ### 双方向リスト（list/）
 ### スタック（stack/）
@@ -26,6 +30,8 @@
 ### リングバッファー（ling_buffer/）
 ### ハッシュ値を求める（hash/）
 ※my_hash.cは自己流のハッシュ値です. ハッシュ値の元, 文字列の長さによって偏りが出ないようにしました.
+
+---
 
 ## ソート（sort/）
 ### バブルソート（bubble/）
@@ -43,15 +49,22 @@ gapの求め方は以下の漸化式で, <img src="https://user-images.githubuse
 
 ### マージソート（merge/）
 
+---
+
 ## 探索（search/）
 ### 二分探索（binary/）
 ### Boyer-Moore法による文字列検索（bm/）
+
+---
 
 ## 木構造（tree/）
 ### 二分探索木（binary_tree/）
 ### ヒープ（heap/）
 ### ヒープソート（heap_sort/）
 
+---
+
 ## グラフ（graph/）
-## 無向グラフ（undirected/）
-## 有向グラフ（directed/）
+### 深さ優先探索（depth_search/）
+#### 無向グラフ（undirected/）
+#### 有向グラフ（directed/）
