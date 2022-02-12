@@ -68,5 +68,5 @@ gapの求め方は以下の漸化式で, <img src="https://user-images.githubuse
 ### 深さ優先探索（depth_search/）
 ### 連結グループ探索（connected_group）
 ### 幅優先探索（width_search/）
-### トポロジカルソート（/topological_sort/）
-### ダイクストラ法（/dijkstra）
+### トポロジカルソート（topological_sort/）
+### ダイクストラ法（dijkstra/）
