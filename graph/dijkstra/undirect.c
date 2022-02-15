@@ -54,21 +54,24 @@ void setup()
         ・確定節点 ... すでに最短距離が決まっている節点
 */
 
-void calcMinLeng(int start_node)
+void findMinRoot(int start_node)
 {
     bool is_defined[SIZE];
     int leng[SIZE];
+    int prev_nodes[SIZE];
 
-    for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < SIZE; i++)
+    {
         is_defined[i] = false;
         leng[i] = INF;
-    leng[start_node] = dists[start_node][start_node];
     }
+    leng[start_node] = 0;
+    prev_nodes[start_node] = -1;
 
     while (true)
     {
         // スタートから最短の節点を探す
-        int min_node = -1;   // スタートから最短の節点
+        int min_node = -1;  // スタートから最短の節点
         int min_leng = INF; // 最短の節点までの距離
         for (int this_node = 0; this_node < SIZE; this_node++)
         {
@@ -83,20 +86,28 @@ void calcMinLeng(int start_node)
         // 最短距離を確定する
         is_defined[min_node] = true;
 
-        if (min_node == -1) {
+        if (min_node == -1)
+        {
             printf("グラフは連結されていない\n");
             break;
         }
 
         // 現状よりも最短のルートを見つけたら, その距離を反映させる
         for (int this_node = 0; this_node < SIZE; this_node++)
+        {
             if (leng[min_node] + dists[min_node][this_node] < leng[this_node])
+            {
                 leng[this_node] = leng[min_node] + dists[min_node][this_node];
+                prev_nodes[this_node] = min_node;
+            }
+        }
 
         // すべての節点の最短距離が計算できたら終了
         bool is_all_defined = true;
-        for (int j = 0; j < SIZE; j++) {
-            if (!is_defined[j]) {
+        for (int j = 0; j < SIZE; j++)
+        {
+            if (!is_defined[j])
+            {
                 is_all_defined = false;
                 break;
             }
@@ -106,13 +117,23 @@ void calcMinLeng(int start_node)
     }
 
     printf("start: %d\n", start_node);
-    for (int this_node = 0; this_node < SIZE; this_node++) 
-        printf("%d->%d: %d\n", start_node, this_node, leng[this_node]);
+    for (int this_node = 0; this_node < SIZE; this_node++) {
+        printf("%d->%d[%d]: %d", start_node, this_node, leng[this_node], this_node);
+
+        int prev_node = this_node, this_node2 = prev_nodes[this_node];
+        while(this_node2 != -1) {
+            printf(" <-(%d)- %d", dists[prev_node][this_node2], this_node2);
+            prev_node = this_node2;
+            this_node2 = prev_nodes[this_node2];
+        }
+        printf("\n");
+    }
+
 }
 
 int main(int argc, char *args[])
 {
     setup();
-    calcMinLeng(0);
+    findMinRoot(2);
     return 0;
 }
