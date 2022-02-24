@@ -9,7 +9,7 @@ void insertSort(int *ary, int bottom, int top)
     // 前の方の値から交換を行う
     for (int i = bottom + 1; i <= top; i++)
     {
-        for (int j = i - 1; j >= 0; j--)
+        for (int j = i - 1; j >= bottom; j--)
         {
             // 上から1つずつ値を確認して, 自分の値のほうが小さかったら配列の前の方に移動させる
             if (ary[j] > ary[j + 1])
