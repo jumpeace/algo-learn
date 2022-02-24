@@ -40,7 +40,7 @@ void shellSort(int *ary, int bottom, int top)
     const int size = (top + 1) - bottom;
 
     // gapを1/2していって狭めていく
-    for (int gap = defineInitGap(size); gap > 0; gap /= 2) {
+    for (int gap = defineInitGap(size); gap > 0; gap /= 3) {
         int tmp[size];
         // gapごとの配列を作ってソート
         for (int i = bottom; i * gap <= top; i++)
@@ -50,11 +50,6 @@ void shellSort(int *ary, int bottom, int top)
 
         for (int i = bottom; i * gap <= top; i++)
             ary[i * gap] = tmp[i];
-
-        // 途中経過表示
-        printf("[gap: %d] ", gap);
-        printAry(ary, bottom, top);
-        printf("\n");
     }
 }
 
