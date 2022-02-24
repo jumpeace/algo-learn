@@ -51,7 +51,7 @@ int ling_remove(Ling *ling)
     return result;
 }
 
-int ling_print(Ling *ling)
+void ling_print(Ling *ling)
 {
     printf("[");
 
