@@ -77,7 +77,7 @@ void ling_print(Ling *ling)
     printf("]");
 }
 
-int ling_free(Ling *ling)
+void ling_free(Ling *ling)
 {
     free(ling->data);
     free(ling);
