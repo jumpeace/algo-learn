@@ -98,7 +98,7 @@ void walkByStack(TreeNode* node) {
     while(!(depth == 0 && this_node == NULL)) {
         // while(this_node != NULL) {
         // スタックが配列のため
-        while(this_node != NULL || depth >= MAX_DEPTH) {
+        while(this_node != NULL && depth < MAX_DEPTH) {
             stack[depth++] = this_node;
             this_node = this_node->left;
         }
