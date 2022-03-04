@@ -10,6 +10,7 @@ typedef struct tagNode
     struct tagNode *right;
 } Node;
 
+// ノードの初期化
 Node *init(char val)
 {
     Node *node = malloc(sizeof(Node));
@@ -19,6 +20,7 @@ Node *init(char val)
     return node;
 }
 
+// 数式記号かどうか
 bool isSymbol(char chr)
 {
     switch (chr)
@@ -33,7 +35,8 @@ bool isSymbol(char chr)
     }
 }
 
-Node *createTreeByPrefix(char eq_str[])
+// ポーランド記法から式の木を作成
+Node *createByPrefix(char eq_str[])
 {
     int eq_len = strlen(eq_str);
     if (eq_len <= 0)
@@ -48,13 +51,14 @@ Node *createTreeByPrefix(char eq_str[])
     if (!isSymbol(node->val))
         return node;
 
-    node->left = createTreeByPrefix(eq_str);
-    node->right = createTreeByPrefix(eq_str);
+    node->left = createByPrefix(eq_str);
+    node->right = createByPrefix(eq_str);
 
     return node;
 }
 
-Node *createTreeByPostfix(char eq_str[])
+// 逆ポーランド記法から式の木を作成
+Node *createByPostfix(char eq_str[])
 {
     int eq_len = strlen(eq_str);
     if (eq_len <= 0)
@@ -67,12 +71,13 @@ Node *createTreeByPostfix(char eq_str[])
     if (!isSymbol(node->val))
         return node;
 
-    node->right = createTreeByPostfix(eq_str);
-    node->left = createTreeByPostfix(eq_str);
+    node->right = createByPostfix(eq_str);
+    node->left = createByPostfix(eq_str);
 
     return node;
 }
 
+// ポーランド記法で表示
 void printByPrefix(Node* node) {
     if (node == NULL) 
         return;
@@ -81,6 +86,7 @@ void printByPrefix(Node* node) {
     printByPrefix(node->right);
 }
 
+// 通常の記法で表示
 void printByInfix(Node* node) {
     if (node == NULL) 
         return;
@@ -89,6 +95,7 @@ void printByInfix(Node* node) {
     printByInfix(node->right);
 }
 
+// 逆ポーランド記法で表示
 void printByPostfix(Node* node) {
     if (node == NULL) 
         return;
@@ -99,20 +106,19 @@ void printByPostfix(Node* node) {
 
 int main(int argc, char *argv[])
 {
-    char eq_str[] = "-*ab/+cde";
-    Node* root = createTreeByPrefix(eq_str);
-    // char eq_str[] = "ab*cd+e/-";
-    // Node* root = createTreeByPostfix(eq_str);
+    // char eq_str[] = "-*ab/+cde";
+    // Node* root = createByPrefix(eq_str);
+    char eq_str[] = "ab*cd+e/-";
+    Node* root = createByPostfix(eq_str);
 
-    // ポーランド法で表示
     printf("prefix: ");
     printByPrefix(root);
     printf("\n");
-    // 通常の表記で表示
+
     printf("infix: ");
     printByInfix(root);
     printf("\n");
-    // 逆ポーランド法で表示
+    
     printf("postfix: ");
     printByPostfix(root);
     printf("\n");
