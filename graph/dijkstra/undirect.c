@@ -83,14 +83,14 @@ void findMinRoot(int start_node)
                 min_leng = leng[this_node];
             }
         }
-        // 最短距離を確定する
-        is_defined[min_node] = true;
 
         if (min_node == -1)
         {
             printf("グラフは連結されていない\n");
             break;
         }
+        // 最短距離を確定する
+        is_defined[min_node] = true;
 
         // 現状よりも最短のルートを見つけたら, その距離を反映させる
         for (int this_node = 0; this_node < SIZE; this_node++)
